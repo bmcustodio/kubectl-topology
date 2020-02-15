@@ -25,7 +25,17 @@ kube-system   metrics-server-v0.3.1-5c6fbf777-z7jxq    gke-gke-1-p-1-8e1077f6-17
 ns-1          nginx                                    gke-gke-1-p-1-7023cbca-cz4b   europe-west1   europe-west1-c
 ```
 
-`kubectl-topology` requires nodes to be adequately labeled with the `topology.kubernetes.io/{region,zone}` labels, or with their deprecated (as of Kubernetes 1.17) equivalents, `failure-domain.beta.kubernetes.io/{region,zone}`. 
+`kubectl-topology` requires nodes to be adequately labeled with the
+
+```text
+topology.kubernetes.io/{region,zone}
+```
+
+labels, or with their deprecated (as of Kubernetes 1.17) equivalents,
+
+```
+failure-domain.beta.kubernetes.io/{region,zone}
+```
 
 
 ## Installation
@@ -58,7 +68,7 @@ gke-gke-1-p-1-7023cbca-cz4b   europe-west1   europe-west1-c
 gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
 ```
 
-To list nodes in a specific zone (e.g. `europe-west1-a`), run
+To list nodes in a specific zone (e.g. `europe-west1-b`), run
 
 ```shell
 $ kubectl topology node --zone europe-west1-b
