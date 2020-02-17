@@ -12,7 +12,7 @@ Provides insight into the topology of a Kubernetes cluster.
 At the moment, this essentially means the distribution of nodes and pods across regions and zones:
 
 ```shell
-$ kubectl-topology pod --all-namespaces
+$ kubectl topology pod --all-namespaces
 NAMESPACE     NAME                                     NODE                          REGION         ZONE
 kube-system   kube-dns-5f886bf8d8-s7pcc                gke-gke-1-p-1-50120dfc-26gm   europe-west1   europe-west1-d
 kube-system   kube-dns-5f886bf8d8-zhm42                gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
@@ -40,7 +40,13 @@ failure-domain.beta.kubernetes.io/{region,zone}
 
 ## Installation
 
-At the moment, `kubectl-topology` must be installed by running
+`kubectl-topology` can be installed using [Krew](https://github.com/kubernetes-sigs/krew):
+
+```shell
+$ kubectl krew install topology
+```
+
+Alternatively, `kubectl-topology` can be installed by running
 
 ```shell
 $ go get github.com/bmcstdio/kubectl-topology/cmd/kubectl-topology
@@ -61,7 +67,7 @@ and copying `./bin/kubectl-topology` to a directory in your `$PATH`.
 To list nodes by zone and region, run
 
 ```shell
-$ kubectl-topology node
+$ kubectl topology node
 NAME                          REGION         ZONE
 gke-gke-1-p-1-50120dfc-26gm   europe-west1   europe-west1-d
 gke-gke-1-p-1-7023cbca-cz4b   europe-west1   europe-west1-c
@@ -79,7 +85,7 @@ gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
 To list nodes in a specific region (e.g. `europe-west1`), run
 
 ```shell
-$ kubectl-topology node --region europe-west1
+$ kubectl topology node --region europe-west1
 NAME                          REGION         ZONE
 gke-gke-1-p-1-50120dfc-26gm   europe-west1   europe-west1-d
 gke-gke-1-p-1-7023cbca-cz4b   europe-west1   europe-west1-c
@@ -93,7 +99,7 @@ gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
 To list pods across all namespaces and the region and zones they are in, run
 
 ```shell
-$ kubectl-topology pod --all-namespaces
+$ kubectl topology pod --all-namespaces
 NAMESPACE     NAME                                     NODE                          REGION         ZONE
 kube-system   kube-dns-5f886bf8d8-s7pcc                gke-gke-1-p-1-50120dfc-26gm   europe-west1   europe-west1-d
 kube-system   kube-dns-5f886bf8d8-zhm42                gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
@@ -109,7 +115,7 @@ ns-1          nginx                                    gke-gke-1-p-1-7023cbca-cz
 To list pods in the `europe-west1-b` zone across all namespaces, run
 
 ```shell
-$ kubectl-topology pod --all-namespaces --zone europe-west1-b
+$ kubectl topology pod --all-namespaces --zone europe-west1-b
 NAMESPACE     NAME                                     NODE                          REGION         ZONE
 kube-system   kube-dns-5f886bf8d8-zhm42                gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
 kube-system   kube-dns-autoscaler-8687c64fc-d5jvm      gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
@@ -120,7 +126,7 @@ kube-system   metrics-server-v0.3.1-5c6fbf777-z7jxq    gke-gke-1-p-1-8e1077f6-17
 To list pods in the `europe-west1` region across all namespaces, run
 
 ```shell
-$ kubectl-topology pod --all-namespaces --region europe-west1
+$ kubectl topology pod --all-namespaces --region europe-west1
 NAMESPACE     NAME                                     NODE                          REGION         ZONE
 kube-system   kube-dns-5f886bf8d8-s7pcc                gke-gke-1-p-1-50120dfc-26gm   europe-west1   europe-west1-d
 kube-system   kube-dns-5f886bf8d8-zhm42                gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
@@ -136,7 +142,7 @@ ns-1          nginx                                    gke-gke-1-p-1-7023cbca-cz
 To list pods in the `europe-west1-c` zone and in `ns-1` only, run
 
 ```shell
-$ kubectl-topology pod --namespace ns-1 --zone europe-west1
+$ kubectl topology pod --namespace ns-1 --zone europe-west1
 NAMESPACE   NAME    NODE                          REGION         ZONE
 ns-1        nginx   gke-gke-1-p-1-7023cbca-cz4b   europe-west1   europe-west1-c
 ```
