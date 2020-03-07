@@ -1,8 +1,9 @@
 # kubectl-topology
 
-Provides insight into the topology of a Kubernetes cluster.
+A `kubectl` plugin that provides insight into the topology of a Kubernetes cluster.
 
 ![Release](https://img.shields.io/github/v/release/bmcstdio/kubectl-topology)
+![Downloads](https://img.shields.io/github/downloads/bmcstdio/kubectl-topology/total?color=green)
 [![Build](https://img.shields.io/travis/com/bmcstdio/kubectl-topology)](https://travis-ci.com/bmcstdio/kubectl-topology)
 ![License](https://img.shields.io/github/license/bmcstdio/kubectl-topology)
 
