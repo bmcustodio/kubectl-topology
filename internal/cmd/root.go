@@ -18,35 +18,39 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
+	"k8s.io/cli-runtime/pkg/genericclioptions"
 	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/tools/clientcmd"
 
 	"github.com/bmcstdio/kubectl-topology/internal/version"
 )
 
 func init() {
+	configFlags = genericclioptions.NewConfigFlags(true)
+	configFlags.AddFlags(rootCmd.PersistentFlags())
 	rootCmd.PersistentFlags().StringP("region", "r", "", "The region to filter resources by. Mutually exclusive with '--zone'.")
 	rootCmd.PersistentFlags().StringP("zone", "z", "", "The zone to filter resources by. Mutually exclusive with '--region'.")
 	rootCmd.SetVersionTemplate("kubectl-topology " + version.Version)
 }
 
 var (
-	kubeClient kubernetes.Interface
+	configFlags *genericclioptions.ConfigFlags
+	kubeClient  kubernetes.Interface
 )
 
 var rootCmd = &cobra.Command{
-	Version: version.Version,
-	Args:    cobra.NoArgs,
-	Use:     "kubectl-topology",
-	Short:   "Provides insight into the topology of a Kubernetes cluster.",
+	Version:      version.Version,
+	Args:         cobra.NoArgs,
+	Use:          "kubectl-topology",
+	SilenceUsage: true,
+	Short:        "Provides insight into the topology of a Kubernetes cluster.",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-		r := clientcmd.NewDefaultClientConfigLoadingRules()
-		o := &clientcmd.ConfigOverrides{}
-		c, err := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(r, o).ClientConfig()
+		kubeConfig, err := configFlags.ToRESTConfig()
 		if err != nil {
 			return err
 		}
-		if kubeClient, err = kubernetes.NewForConfig(c); err != nil {
+		kubeClient, err = kubernetes.NewForConfig(kubeConfig)
+		if err != nil {
 			return err
 		}
 		return nil
@@ -54,6 +58,7 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	pflag.CommandLine = pflag.NewFlagSet("kubectl-topology", pflag.ExitOnError)
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
 	}

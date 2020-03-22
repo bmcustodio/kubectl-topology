@@ -23,7 +23,6 @@ import (
 
 func init() {
 	rootCmd.AddCommand(podCmd)
-	podCmd.PersistentFlags().StringP("namespace", "n", corev1.NamespaceDefault, "List pods in the specified namespace only.")
 	podCmd.PersistentFlags().BoolP("all-namespaces", "A", false, "List pods across all namespaces.")
 }
 
