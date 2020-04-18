@@ -6,7 +6,7 @@ VERSION := $(shell git describe --always --dirty=-dev)
 
 .PHONY: build
 build:
-	@CGO_ENABLED=0 go build -ldflags="-X github.com/bmcstdio/kubectl-topology/internal/version.Version=$(VERSION)" \
+	@CGO_ENABLED=0 go build -ldflags="-X github.com/bmcustodio/kubectl-topology/internal/version.Version=$(VERSION)" \
 		-v -o "$(ROOT)/bin/kubectl-topology" -tags netgo "$(ROOT)/cmd/kubectl-topology/"
 
 .PHONY: ci

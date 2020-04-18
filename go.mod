@@ -1,4 +1,4 @@
-module github.com/bmcstdio/kubectl-topology
+module github.com/bmcustodio/kubectl-topology
 
 go 1.13
 

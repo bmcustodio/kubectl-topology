@@ -1,4 +1,4 @@
-// Copyright 2020 bmcstdio
+// Copyright 2020 bmcustodio
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import (
 	"github.com/spf13/cobra"
 	corev1 "k8s.io/api/core/v1"
 
-	"github.com/bmcstdio/kubectl-topology/internal/util"
+	"github.com/bmcustodio/kubectl-topology/internal/util"
 )
 
 func init() {

@@ -2,10 +2,10 @@
 
 A `kubectl` plugin that provides insight into the topology of a Kubernetes cluster.
 
-![Release](https://img.shields.io/github/v/release/bmcstdio/kubectl-topology)
-![Downloads](https://img.shields.io/github/downloads/bmcstdio/kubectl-topology/total?color=green)
-[![Build](https://img.shields.io/travis/com/bmcstdio/kubectl-topology)](https://travis-ci.com/bmcstdio/kubectl-topology)
-![License](https://img.shields.io/github/license/bmcstdio/kubectl-topology)
+![Release](https://img.shields.io/github/v/release/bmcustodio/kubectl-topology)
+![Downloads](https://img.shields.io/github/downloads/bmcustodio/kubectl-topology/total?color=green)
+[![Build](https://img.shields.io/travis/com/bmcustodio/kubectl-topology)](https://travis-ci.com/bmcustodio/kubectl-topology)
+![License](https://img.shields.io/github/license/bmcustodio/kubectl-topology)
 
 ## Introduction
 
@@ -50,7 +50,7 @@ $ kubectl krew install topology
 Alternatively, `kubectl-topology` can be installed by running
 
 ```shell
-$ go get github.com/bmcstdio/kubectl-topology/cmd/kubectl-topology
+$ go get github.com/bmcustodio/kubectl-topology/cmd/kubectl-topology
 ```
 
 or by cloning this repository, running
@@ -152,7 +152,7 @@ ns-1        nginx   gke-gke-1-p-1-7023cbca-cz4b   europe-west1   europe-west1-c
 
 ## License
 
-Copyright 2020 bmcstdio
+Copyright 2020 bmcustodio
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

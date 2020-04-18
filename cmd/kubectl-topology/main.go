@@ -1,4 +1,4 @@
-// Copyright 2020 bmcstdio
+// Copyright 2020 bmcustodio
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth/oidc"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/openstack"
 
-	"github.com/bmcstdio/kubectl-topology/internal/cmd"
+	"github.com/bmcustodio/kubectl-topology/internal/cmd"
 )
 
 func main() {

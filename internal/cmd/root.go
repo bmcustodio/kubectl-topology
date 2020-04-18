@@ -1,4 +1,4 @@
-// Copyright 2020 bmcstdio
+// Copyright 2020 bmcustodio
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import (
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/bmcstdio/kubectl-topology/internal/version"
+	"github.com/bmcustodio/kubectl-topology/internal/version"
 )
 
 func init() {
