@@ -19,7 +19,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 )
 
-func ListPods(kubeClient kubernetes.Interface, o *TopologyOptions) (PodList, error) {
+func ListPods(kubeClient kubernetes.Interface, o *TopologyOptions, s string) (PodList, error) {
 	n, err := ListNodes(kubeClient, o)
 	if err != nil {
 		return nil, err
@@ -28,6 +28,7 @@ func ListPods(kubeClient kubernetes.Interface, o *TopologyOptions) (PodList, err
 	for _, nn := range n {
 		p, err := kubeClient.CoreV1().Pods(o.Namespace).List(metav1.ListOptions{
 			FieldSelector: "spec.nodeName=" + nn.Name,
+			LabelSelector: s,
 		})
 		if err != nil {
 			return nil, err

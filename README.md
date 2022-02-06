@@ -148,6 +148,16 @@ NAMESPACE   NAME    NODE                          REGION         ZONE
 ns-1        nginx   gke-gke-1-p-1-7023cbca-cz4b   europe-west1   europe-west1-c
 ```
 
+You can filter out pods using label selectors with the usual syntax:
+
+```shell
+$ kubectl topology pod --all-namespaces --region europe-west1 --selector k8s-app=kube-dns
+NAMESPACE     NAME                                     NODE                          REGION         ZONE
+kube-system   kube-dns-5f886bf8d8-s7pcc                gke-gke-1-p-1-50120dfc-26gm   europe-west1   europe-west1-d
+kube-system   kube-dns-5f886bf8d8-zhm42                gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
+kube-system   kube-dns-autoscaler-8687c64fc-d5jvm      gke-gke-1-p-1-8e1077f6-17st   europe-west1   europe-west1-b
+```
+
 **NOTE:** `--region` and `--zone` are mutually exclusive.
 
 ## License

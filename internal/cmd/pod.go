@@ -24,6 +24,7 @@ import (
 func init() {
 	rootCmd.AddCommand(podCmd)
 	podCmd.PersistentFlags().BoolP("all-namespaces", "A", false, "List pods across all namespaces.")
+	podCmd.PersistentFlags().StringP("selector", "l", "", "A label selector to filter out pods.")
 }
 
 var podCmd = &cobra.Command{
@@ -41,11 +42,15 @@ var podCmd = &cobra.Command{
 		}
 		r, _ := cmd.Flags().GetString("region")
 		z, _ := cmd.Flags().GetString("zone")
+		l, err := cmd.Flags().GetString("selector")
+		if err != nil {
+			return err
+		}
 		o, err := util.NewTopologyOptions(r, z, n)
 		if err != nil {
 			return err
 		}
-		p, err := util.ListPods(kubeClient, o)
+		p, err := util.ListPods(kubeClient, o, l)
 		if err != nil {
 			return err
 		}
