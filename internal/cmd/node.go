@@ -25,9 +25,10 @@ func init() {
 }
 
 var nodeCmd = &cobra.Command{
-	Args:  cobra.NoArgs,
-	Use:   "node",
-	Short: "Provides insight into the distribution of nodes per region or zone.",
+	Args:    cobra.NoArgs,
+	Use:     "nodes",
+	Aliases: []string{"node"},
+	Short:   "Provides insight into the distribution of nodes per region or zone.",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		r, _ := cmd.Flags().GetString("region")
 		z, _ := cmd.Flags().GetString("zone")
@@ -38,6 +39,13 @@ var nodeCmd = &cobra.Command{
 		n, err := util.ListNodes(kubeClient, o)
 		if err != nil {
 			return err
+		}
+		t, err := cmd.Flags().GetBool("tree")
+		if err != nil {
+			return err
+		}
+		if t {
+			return util.PrintNodeTree(n)
 		}
 		return util.PrintResult(n, false)
 	},
