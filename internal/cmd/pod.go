@@ -27,9 +27,10 @@ func init() {
 }
 
 var podCmd = &cobra.Command{
-	Args:  cobra.NoArgs,
-	Use:   "pod",
-	Short: "Provides insight into the distribution of pods per region or zone.",
+	Args:    cobra.NoArgs,
+	Use:     "pods",
+	Aliases: []string{"pod"},
+	Short:   "Provides insight into the distribution of pods per region or zone.",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		a, err := cmd.Flags().GetBool("all-namespaces")
 		if err != nil {
@@ -48,6 +49,13 @@ var podCmd = &cobra.Command{
 		p, err := util.ListPods(kubeClient, o)
 		if err != nil {
 			return err
+		}
+		t, err := cmd.Flags().GetBool("tree")
+		if err != nil {
+			return err
+		}
+		if t {
+			return util.PrintPodTree(p)
 		}
 		return util.PrintResult(p, false)
 	},
